@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <title th:text="${title} + ' | ' + #{app.title}"></title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+
+<body>
+<nav th:fragment="navbar" class="navbar">
+    <a th:href="@{/home}" th:text="#{nav.home}">Home</a>
+    <a th:href="@{/top10}" th:text="#{nav.top10}">Top-10</a>
+    <a th:href="@{/team}" sec:authorize="isAuthenticated()" th:text="#{nav.myteam}">Mijn team</a>
+    <a th:href="@{/admin/wedstrijden}" sec:authorize="hasRole('ADMIN')" th:text="#{nav.admin.matches}">Beheer wedstrijden</a>
+
+    <div class="nav-spacer"></div> <div class="nav-user" sec:authorize="isAuthenticated()">
+    <span th:text="#{label.gebruikersnaam}"></span>: <strong sec:authentication="name"></strong>
+    (<span sec:authentication="principal.authorities"></span>)
+</div>
+
+    <a th:href="@{/login}" sec:authorize="isAnonymous()" th:text="#{nav.login}">Inloggen</a>
+    <a th:href="@{/registreer}" sec:authorize="isAnonymous()" th:text="#{nav.register}">Registreren</a>
+    <form th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()">
+        <button type="submit" th:text="#{nav.logout}">Uitloggen</button>
+    </form>
+</nav>
+</body>
+</html>

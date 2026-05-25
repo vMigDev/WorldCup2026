@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head(#{nav.register})}"></head>
+<body>
+<nav th:replace="~{fragments :: navbar}"></nav>
+
+<div class="container">
+    <div class="card" style="max-width: 400px; margin: 2rem auto;">
+        <h1 th:text="#{nav.register}">Registreren</h1>
+
+        <p th:if="${foutmelding}" class="alert alert-danger" th:text="#{${foutmelding}}"></p>
+
+        <form method="post" th:action="@{/registreer}">
+            <div class="form-group">
+                <label>Gebruikersnaam</label>
+                <input type="text" name="gebruikersnaam" required>
+            </div>
+            <div class="form-group">
+                <label>Wachtwoord (min. 8 tekens)</label>
+                <input type="password" name="wachtwoord" minlength="8" required>
+            </div>
+            <div class="action-buttons" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                <button type="submit" class="btn" th:text="#{nav.register}">Registreren</button>
+                <a th:href="@{/login}" class="btn btn-secondary" style="text-align: center;">Annuleren</a>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

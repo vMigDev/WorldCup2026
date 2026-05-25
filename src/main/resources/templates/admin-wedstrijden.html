@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Admin Wedstrijden')}"></head>
+<body>
+<nav th:replace="~{fragments :: navbar}"></nav>
+
+<div class="container">
+    <div th:if="${succes}" class="alert alert-success" th:text="#{${succes}}"></div>
+
+    <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <h1>Wedstrijdbeheer</h1>
+            <a th:href="@{/admin/wedstrijden/nieuw}" class="btn">Nieuwe wedstrijd</a>
+        </div>
+
+        <table>
+            <tr><th>Match</th><th>Datum</th><th>Locatie</th><th>Uitslag ingeven</th><th>Acties</th></tr>
+            <tr th:each="wedstrijd : ${wedstrijden}">
+                <td th:text="${wedstrijd.landA + ' vs ' + wedstrijd.landB}"></td>
+                <td th:text="${#temporals.format(wedstrijd.datumTijd, #messages.msg('label.format.datetime'))}"></td>
+                <td th:text="${wedstrijd.locatie}"></td>
+                <td>
+                    <form method="post" th:action="@{|/admin/wedstrijden/${wedstrijd.id}/uitslag|}" style="display:flex; gap:0.5rem; align-items:center; margin:0;">
+                        <input type="number" min="0" name="doelpuntenA" th:value="${wedstrijd.doelpuntenA}" style="width:50px; padding:0.3rem;" required>
+                        -
+                        <input type="number" min="0" name="doelpuntenB" th:value="${wedstrijd.doelpuntenB}" style="width:50px; padding:0.3rem;" required>
+                        <button type="submit" class="btn btn-secondary" style="padding: 0.3rem 0.6rem;">Save</button>
+                    </form>
+                </td>
+                <td>
+                    <a th:href="@{|/admin/wedstrijden/${wedstrijd.id}/bewerk|}" class="btn" style="padding: 0.3rem 0.6rem;">Bewerk</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

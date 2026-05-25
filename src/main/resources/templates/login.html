@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head(#{nav.login})}"></head>
+<body>
+<nav th:replace="~{fragments :: navbar}"></nav>
+
+<div class="container">
+    <div class="card" style="max-width: 400px; margin: 2rem auto;">
+        <h1 th:text="#{nav.login}">Inloggen</h1>
+
+        <p th:if="${param.error}" class="alert alert-danger">Ongeldige gebruikersnaam of wachtwoord.</p>
+        <p th:if="${param.logout}" class="alert alert-success">Je bent succesvol uitgelogd.</p>
+        <p th:if="${succes}" class="alert alert-success" th:text="#{${succes}}"></p>
+
+        <form method="post" th:action="@{/login}">
+            <div class="form-group">
+                <label>Gebruikersnaam</label>
+                <input type="text" name="username" required>
+            </div>
+            <div class="form-group">
+                <label>Wachtwoord</label>
+                <input type="password" name="password" required>
+            </div>
+            <div class="action-buttons">
+                <button type="submit" class="btn" style="width: 100%;" th:text="#{nav.login}">Inloggen</button>
+            </div>
+        </form>
+
+        <div style="margin-top: 1.5rem; text-align: center; border-top: 1px solid #eee; padding-top: 1rem;">
+            Nog geen account? <a th:href="@{/registreer}" th:text="#{nav.register}">Registreren</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Team Beheren')}"></head>
+<body>
+<nav th:replace="~{fragments :: navbar}"></nav>
+
+<div class="container">
+    <div th:if="${foutmelding}" class="alert alert-danger" th:text="#{${foutmelding}}"></div>
+
+    <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
+
+        <div class="card" style="flex: 1; min-width: 300px;">
+            <h1>Nieuw team</h1>
+            <p>Maak een nieuw team aan en word de captain. Je kunt hierna je invitecode delen met je vrienden.</p>
+            <form method="post" th:action="@{/team/nieuw}">
+                <div class="form-group">
+                    <label>Teamnaam</label>
+                    <input type="text" name="teamNaam" required>
+                </div>
+                <button type="submit" class="btn">Team aanmaken</button>
+            </form>
+        </div>
+
+        <div class="card" style="flex: 1; min-width: 300px;">
+            <h2>Join bestaand team</h2>
+            <p>Heb je een invitecode gekregen van een vriend? Vul deze hier in om je direct bij het team aan te sluiten.</p>
+            <form method="post" th:action="@{/team/join}">
+                <div class="form-group">
+                    <label>Invitecode</label>
+                    <input type="text" name="uitnodigingscode" required>
+                </div>
+                <button type="submit" class="btn btn-secondary">Join team</button>
+            </form>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

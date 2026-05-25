@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Wedstrijdbeheer')}"></head>
+<body>
+<nav th:replace="~{fragments :: navbar}"></nav>
+
+<div class="container">
+    <div class="card" style="max-width: 600px; margin: auto;">
+        <h1 th:text="${wedstrijd.id == null ? 'Nieuwe Wedstrijd' : 'Wedstrijd Bewerken'}"></h1>
+
+        <form method="post" th:object="${wedstrijd}" th:action="${wedstrijd.id} == null ? @{/admin/wedstrijden/nieuw} : @{'/admin/wedstrijden/' + ${wedstrijd.id} + '/bewerk'}">
+            <input type="hidden" th:field="*{id}">
+
+            <div th:if="${#fields.hasGlobalErrors()}" class="alert alert-danger">
+                <p th:each="err : ${#fields.globalErrors()}" th:text="${err}" style="margin:0;"></p>
+            </div>
+            <div class="form-group">
+                <label>Land A</label>
+                <input type="text" th:field="*{landA}">
+                <span class="error-text" th:if="${#fields.hasErrors('landA')}" th:errors="*{landA}"></span>
+            </div>
+
+            <div class="form-group">
+                <label>Land B</label>
+                <input type="text" th:field="*{landB}">
+                <span class="error-text" th:if="${#fields.hasErrors('landB')}" th:errors="*{landB}"></span>
+            </div>
+
+            <div class="form-group">
+                <label>Datum & tijd</label>
+                <input type="datetime-local" th:field="*{datumTijd}">
+                <span class="error-text" th:if="${#fields.hasErrors('datumTijd')}" th:errors="*{datumTijd}"></span>
+            </div>
+
+            <div class="form-group">
+                <label>Locatie</label>
+                <input type="text" th:field="*{locatie}">
+                <span class="error-text" th:if="${#fields.hasErrors('locatie')}" th:errors="*{locatie}"></span>
+            </div>
+
+            <div style="display:flex; gap:1rem;">
+                <div class="form-group" style="flex:1;">
+                    <label>Stadiumcode</label>
+                    <input type="number" th:field="*{stadiumcode}">
+                    <span class="error-text" th:if="${#fields.hasErrors('stadiumcode')}" th:errors="*{stadiumcode}"></span>
+                </div>
+                <div class="form-group" style="flex:1;">
+                    <label>Checksum</label>
+                    <input type="number" th:field="*{checksum}">
+                    <span class="error-text" th:if="${#fields.hasErrors('checksum')}" th:errors="*{checksum}"></span>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button type="submit" class="btn">Opslaan</button>
+                <a th:href="@{/admin/wedstrijden}" class="btn btn-secondary">Annuleren</a>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

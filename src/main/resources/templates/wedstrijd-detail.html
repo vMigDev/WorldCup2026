@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments :: head(${wedstrijd.landA + ' vs ' + wedstrijd.landB})}"></head>
+<body>
+<nav th:replace="~{fragments :: navbar}"></nav>
+
+<div class="container">
+    <div th:if="${succes}" class="alert alert-success" th:text="#{${succes}}"></div>
+    <div th:if="${foutmelding}" class="alert alert-danger" th:text="#{${foutmelding}}"></div>
+
+    <div class="card">
+        <h1 th:text="${wedstrijd.landA + ' vs ' + wedstrijd.landB}"></h1>
+        <p><strong th:text="#{label.datum}"></strong>: <span th:text="${#temporals.format(wedstrijd.datumTijd, #messages.msg('label.format.datetime'))}"></span></p>
+        <p><strong th:text="#{label.locatie}"></strong>: <span th:text="${wedstrijd.locatie}"></span></p>
+        <p><strong th:text="#{label.capaciteit}"></strong>: <span th:text="${capaciteit}"></span></p>
+        <p><strong th:text="#{label.uitslag}"></strong>: <span th:text="${wedstrijd.doelpuntenA != null ? wedstrijd.doelpuntenA + ' - ' + wedstrijd.doelpuntenB : '-'}"></span></p>
+
+        <div class="action-buttons">
+            <a href="javascript:history.back()" class="btn btn-secondary">Terug</a>
+            <a th:href="@{|/admin/wedstrijden/${wedstrijd.id}/bewerk|}" sec:authorize="hasRole('ADMIN')" class="btn">Bewerken</a>
+        </div>
+    </div>
+
+    <div class="card" sec:authorize="isAuthenticated()">
+        <h2>Mijn prognose</h2>
+        <form method="post" th:action="@{|/wedstrijd/${wedstrijd.id}/prognose|}" th:if="${magWijzigen}">
+            <div style="display:flex; gap:1rem;">
+                <div class="form-group">
+                    <label th:text="'Goals ' + ${wedstrijd.landA}"></label>
+                    <input type="number" min="0" name="doelpuntenA" th:value="${eigenPrognose != null ? eigenPrognose.voorspeldeDoelpuntenA : 0}">
+                </div>
+                <div class="form-group">
+                    <label th:text="'Goals ' + ${wedstrijd.landB}"></label>
+                    <input type="number" min="0" name="doelpuntenB" th:value="${eigenPrognose != null ? eigenPrognose.voorspeldeDoelpuntenB : 0}">
+                </div>
+            </div>
+            <button type="submit" class="btn">Prognose Opslaan</button>
+        </form>
+        <div th:unless="${magWijzigen}" class="alert alert-danger">Prognose aanpassen is niet meer mogelijk (minder dan 1 uur voor aftrap).</div>
+    </div>
+</div>
+</body>
+</html>
