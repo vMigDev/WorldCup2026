@@ -15,7 +15,7 @@
                 <p><strong th:text="#{label.invitecode}"></strong>:
                     <span th:text="${team.uitnodigingscode}" style="background: #f1f4f9; padding: 0.3rem 0.6rem; border-radius: 4px; font-family: monospace; font-size: 1.1rem; letter-spacing: 2px;"></span>
                 </p>
-                <p><strong th:text="#{label.totaalscore}"></strong>: <span th:text="${totaleScore}"></span> punten</p>
+                <p><strong th:text="#{label.totaalscore}"></strong>: <span th:text="${totaleScore}"></span> <span th:text="#{label.punten}"></span></p>
             </div>
 
             <form th:if="${isEigenaar}" method="post" th:action="@{|/team/${team.id}/regenerate|}">
@@ -25,7 +25,7 @@
     </div>
 
     <div class="card">
-        <h2>Leden</h2>
+        <h2 th:text="#{label.leden}">Leden</h2>
         <table>
             <tr>
                 <th th:text="#{label.gebruikersnaam}">Gebruikersnaam</th>

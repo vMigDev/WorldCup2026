@@ -17,8 +17,8 @@
     <div class="nav-spacer"></div>
 
     <div style="margin-right: 1rem; display: flex; gap: 0.5rem; align-items: center;">
-        <a th:href="@{''(lang='nl')}" style="padding: 0.2rem 0.5rem; background: rgba(255,255,255,0.1); border-radius: 3px; font-size: 0.85rem;">NL</a>
-        <a th:href="@{''(lang='en')}" style="padding: 0.2rem 0.5rem; background: rgba(255,255,255,0.1); border-radius: 3px; font-size: 0.85rem;">EN</a>
+        <a href="?lang=nl" style="padding: 0.2rem 0.5rem; background: rgba(255,255,255,0.1); border-radius: 3px; font-size: 0.85rem;">NL</a>
+        <a href="?lang=en" style="padding: 0.2rem 0.5rem; background: rgba(255,255,255,0.1); border-radius: 3px; font-size: 0.85rem;">EN</a>
     </div>
 
     <div class="nav-user" sec:authorize="isAuthenticated()">

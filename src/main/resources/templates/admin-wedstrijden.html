@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="nl" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments :: head('Admin Wedstrijden')}"></head>
+<head th:replace="~{fragments :: head(#{title.admin.matches})}"></head>
 <body>
 <nav th:replace="~{fragments :: navbar}"></nav>
 
@@ -9,12 +9,12 @@
 
     <div class="card">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-            <h1>Wedstrijdbeheer</h1>
-            <a th:href="@{/admin/wedstrijden/nieuw}" class="btn">Nieuwe wedstrijd</a>
+            <h1 th:text="#{admin.matches.title}">Wedstrijdbeheer</h1>
+            <a th:href="@{/admin/wedstrijden/nieuw}" class="btn" th:text="#{button.new.match}">Nieuwe wedstrijd</a>
         </div>
 
         <table>
-            <tr><th>Match</th><th>Datum</th><th>Locatie</th><th>Uitslag ingeven</th><th>Acties</th></tr>
+            <tr><th th:text="#{label.match}">Match</th><th th:text="#{label.datum}">Datum</th><th th:text="#{label.locatie}">Locatie</th><th th:text="#{label.uitslag.ingeven}">Uitslag ingeven</th><th th:text="#{label.actions}">Acties</th></tr>
             <tr th:each="wedstrijd : ${wedstrijden}">
                 <td th:text="${wedstrijd.landA + ' vs ' + wedstrijd.landB}"></td>
                 <td th:text="${#temporals.format(wedstrijd.datumTijd, #messages.msg('label.format.datetime'))}"></td>
@@ -24,11 +24,11 @@
                         <input type="number" min="0" name="doelpuntenA" th:value="${wedstrijd.doelpuntenA}" style="width:50px; padding:0.3rem;" required>
                         -
                         <input type="number" min="0" name="doelpuntenB" th:value="${wedstrijd.doelpuntenB}" style="width:50px; padding:0.3rem;" required>
-                        <button type="submit" class="btn btn-secondary" style="padding: 0.3rem 0.6rem;">Save</button>
+                        <button type="submit" class="btn btn-secondary" style="padding: 0.3rem 0.6rem;" th:text="#{button.save}">Save</button>
                     </form>
                 </td>
                 <td>
-                    <a th:href="@{|/admin/wedstrijden/${wedstrijd.id}/bewerk|}" class="btn" style="padding: 0.3rem 0.6rem;">Bewerk</a>
+                    <a th:href="@{|/admin/wedstrijden/${wedstrijd.id}/bewerk|}" class="btn" style="padding: 0.3rem 0.6rem;" th:text="#{button.edit}">Bewerk</a>
                 </td>
             </tr>
         </table>

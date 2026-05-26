@@ -7,14 +7,14 @@
 <div class="container">
     <div class="card">
         <h1 th:text="#{nav.top10}">Top-10 Teams</h1>
-        <p>Ontdek welke teams de allerbeste World Cup prognoses hebben ingevuld!</p>
+        <p th:text="#{top10.intro}">Ontdek welke teams de allerbeste World Cup prognoses hebben ingevuld!</p>
 
         <table>
             <tr>
-                <th>Rang</th>
-                <th>Team</th>
-                <th>Totale Score</th>
-                <th>Aantal Leden</th>
+                <th th:text="#{label.rang}">Rang</th>
+                <th th:text="#{label.team}">Team</th>
+                <th th:text="#{label.totaalscore}">Totale Score</th>
+                <th th:text="#{label.aantalleden}">Aantal Leden</th>
             </tr>
             <tr th:each="entry, iter : ${teams}">
                 <td>
@@ -22,7 +22,7 @@
                     <span th:if="${iter.count > 3}" th:text="${iter.count}"></span>
                 </td>
                 <td th:text="${entry.team.teamNaam}" style="font-weight: bold;"></td>
-                <td th:text="${entry.totaleScore} + ' pt'"></td>
+                <td th:text="${entry.totaleScore} + ' ' + #{label.punten}"></td>
                 <td th:text="${entry.aantalLeden}"></td>
             </tr>
         </table>

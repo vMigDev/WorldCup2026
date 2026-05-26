@@ -16,7 +16,7 @@ public class TaalConfig implements WebMvcConfigurer {
     @Bean
     public LocaleResolver localeResolver() {
         SessionLocaleResolver slr = new SessionLocaleResolver();
-        slr.setDefaultLocale(Locale.of("nl"));
+        slr.setDefaultLocale(new Locale("nl"));
         return slr;
     }
 

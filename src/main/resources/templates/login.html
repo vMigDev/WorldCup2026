@@ -8,17 +8,17 @@
     <div class="card" style="max-width: 400px; margin: 2rem auto;">
         <h1 th:text="#{nav.login}">Inloggen</h1>
 
-        <p th:if="${param.error}" class="alert alert-danger">Ongeldige gebruikersnaam of wachtwoord.</p>
-        <p th:if="${param.logout}" class="alert alert-success">Je bent succesvol uitgelogd.</p>
+        <p th:if="${param.error}" class="alert alert-danger" th:text="#{error.login.invalid}">Ongeldige gebruikersnaam of wachtwoord.</p>
+        <p th:if="${param.logout}" class="alert alert-success" th:text="#{msg.logout.succes}">Je bent succesvol uitgelogd.</p>
         <p th:if="${succes}" class="alert alert-success" th:text="#{${succes}}"></p>
 
         <form method="post" th:action="@{/login}">
             <div class="form-group">
-                <label>Gebruikersnaam</label>
+                <label th:text="#{label.gebruikersnaam}">Gebruikersnaam</label>
                 <input type="text" name="username" required>
             </div>
             <div class="form-group">
-                <label>Wachtwoord</label>
+                <label th:text="#{label.wachtwoord}">Wachtwoord</label>
                 <input type="password" name="password" required>
             </div>
             <div class="action-buttons">
@@ -27,7 +27,7 @@
         </form>
 
         <div style="margin-top: 1.5rem; text-align: center; border-top: 1px solid #eee; padding-top: 1rem;">
-            Nog geen account? <a th:href="@{/registreer}" th:text="#{nav.register}">Registreren</a>
+            <span th:text="#{login.no.account}">Nog geen account?</span> <a th:href="@{/registreer}" th:text="#{nav.register}">Registreren</a>
         </div>
     </div>
 </div>

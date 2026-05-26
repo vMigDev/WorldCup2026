@@ -16,27 +16,27 @@
         <p><strong th:text="#{label.uitslag}"></strong>: <span th:text="${wedstrijd.doelpuntenA != null ? wedstrijd.doelpuntenA + ' - ' + wedstrijd.doelpuntenB : '-'}"></span></p>
 
         <div class="action-buttons">
-            <a href="javascript:history.back()" class="btn btn-secondary">Terug</a>
-            <a th:href="@{|/admin/wedstrijden/${wedstrijd.id}/bewerk|}" sec:authorize="hasRole('ADMIN')" class="btn">Bewerken</a>
+            <a href="javascript:history.back()" class="btn btn-secondary" th:text="#{button.back}">Terug</a>
+            <a th:href="@{|/admin/wedstrijden/${wedstrijd.id}/bewerk|}" sec:authorize="hasRole('ADMIN')" class="btn" th:text="#{button.edit}">Bewerken</a>
         </div>
     </div>
 
     <div class="card" sec:authorize="isAuthenticated()">
-        <h2>Mijn prognose</h2>
+        <h2 th:text="#{wedstrijd.prognose.title}">Mijn prognose</h2>
         <form method="post" th:action="@{|/wedstrijd/${wedstrijd.id}/prognose|}" th:if="${magWijzigen}">
             <div style="display:flex; gap:1rem;">
                 <div class="form-group">
-                    <label th:text="'Goals ' + ${wedstrijd.landA}"></label>
+                    <label th:text="#{label.goals} + ' ' + ${wedstrijd.landA}"></label>
                     <input type="number" min="0" name="doelpuntenA" th:value="${eigenPrognose != null ? eigenPrognose.voorspeldeDoelpuntenA : 0}">
                 </div>
                 <div class="form-group">
-                    <label th:text="'Goals ' + ${wedstrijd.landB}"></label>
+                    <label th:text="#{label.goals} + ' ' + ${wedstrijd.landB}"></label>
                     <input type="number" min="0" name="doelpuntenB" th:value="${eigenPrognose != null ? eigenPrognose.voorspeldeDoelpuntenB : 0}">
                 </div>
             </div>
-            <button type="submit" class="btn">Prognose Opslaan</button>
+            <button type="submit" class="btn" th:text="#{button.save.prognose}">Prognose Opslaan</button>
         </form>
-        <div th:unless="${magWijzigen}" class="alert alert-danger">Prognose aanpassen is niet meer mogelijk (minder dan 1 uur voor aftrap).</div>
+        <div th:unless="${magWijzigen}" class="alert alert-danger" th:text="#{error.prognose.te.laat}"></div>
     </div>
 </div>
 </body>

@@ -15,14 +15,14 @@
     </div>
 
     <div class="card">
-        <h2>Geplande Wedstrijden</h2>
+        <h2 th:text="#{home.matches.title}">Geplande Wedstrijden</h2>
         <table>
-            <tr><th>Match</th><th th:text="#{label.datum}">Datum</th><th th:text="#{label.locatie}">Locatie</th><th>Details</th></tr>
+            <tr><th th:text="#{label.match}">Match</th><th th:text="#{label.datum}">Datum</th><th th:text="#{label.locatie}">Locatie</th><th th:text="#{label.details}">Details</th></tr>
             <tr th:each="wedstrijd : ${wedstrijden}">
                 <td th:text="${wedstrijd.landA + ' vs ' + wedstrijd.landB}"></td>
                 <td th:text="${#temporals.format(wedstrijd.datumTijd, #messages.msg('label.format.datetime'))}"></td>
                 <td th:text="${wedstrijd.locatie}"></td>
-                <td><a th:href="@{|/wedstrijd/${wedstrijd.id}|}" class="btn btn-secondary" style="padding: 0.3rem 0.6rem;">Bekijk</a></td>
+                <td><a th:href="@{|/wedstrijd/${wedstrijd.id}|}" class="btn btn-secondary" style="padding: 0.3rem 0.6rem;" th:text="#{button.view}">Bekijk</a></td>
             </tr>
         </table>
     </div>
