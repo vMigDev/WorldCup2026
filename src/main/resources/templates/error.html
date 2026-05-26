@@ -6,9 +6,9 @@
 
 <div class="container">
     <div class="card alert-danger" style="text-align: center; padding: 3rem;">
-        <h1 style="color: #842029;" th:text="#{error.oops}">Oeps! Er ging iets mis.</h1>
+        <h1 style="color: #842029;" th:text="#{error.oops}"></h1>
         <p th:text="${foutmelding}" style="font-size: 1.2rem; margin-bottom: 2rem;"></p>
-        <a th:href="@{/home}" class="btn" th:text="#{nav.back.home}">Terug naar home</a>
+        <a th:href="@{/home}" class="btn">[[#{nav.back.home}]]</a>
     </div>
 </div>
 </body>

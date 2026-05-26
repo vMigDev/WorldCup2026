@@ -10,19 +10,19 @@
 
     <div class="card">
         <h1 th:text="${wedstrijd.landA + ' vs ' + wedstrijd.landB}"></h1>
-        <p><strong th:text="#{label.datum}"></strong>: <span th:text="${#temporals.format(wedstrijd.datumTijd, #messages.msg('label.format.datetime'))}"></span></p>
-        <p><strong th:text="#{label.locatie}"></strong>: <span th:text="${wedstrijd.locatie}"></span></p>
-        <p><strong th:text="#{label.capaciteit}"></strong>: <span th:text="${capaciteit}"></span></p>
-        <p><strong th:text="#{label.uitslag}"></strong>: <span th:text="${wedstrijd.doelpuntenA != null ? wedstrijd.doelpuntenA + ' - ' + wedstrijd.doelpuntenB : '-'}"></span></p>
+        <p><strong>[[#{label.datum}]]</strong>: <span th:text="${#temporals.format(wedstrijd.datumTijd, #messages.msg('label.format.datetime'))}"></span></p>
+        <p><strong>[[#{label.locatie}]]</strong>: <span th:text="${wedstrijd.locatie}"></span></p>
+        <p><strong>[[#{label.capaciteit}]]</strong>: <span th:text="${capaciteit}"></span></p>
+        <p><strong>[[#{label.uitslag}]]</strong>: <span th:text="${wedstrijd.doelpuntenA != null ? wedstrijd.doelpuntenA + ' - ' + wedstrijd.doelpuntenB : '-'}"></span></p>
 
         <div class="action-buttons">
-            <a href="javascript:history.back()" class="btn btn-secondary" th:text="#{button.back}">Terug</a>
-            <a th:href="@{|/admin/wedstrijden/${wedstrijd.id}/bewerk|}" sec:authorize="hasRole('ADMIN')" class="btn" th:text="#{button.edit}">Bewerken</a>
+            <a href="javascript:history.back()" class="btn btn-secondary">[[#{button.back}]]</a>
+            <a th:href="@{|/admin/wedstrijden/${wedstrijd.id}/bewerk|}" sec:authorize="hasRole('ADMIN')" class="btn">[[#{button.edit}]]</a>
         </div>
     </div>
 
     <div class="card" sec:authorize="isAuthenticated()">
-        <h2 th:text="#{wedstrijd.prognose.title}">Mijn prognose</h2>
+        <h2 th:text="#{wedstrijd.prognose.title}"></h2>
         <form method="post" th:action="@{|/wedstrijd/${wedstrijd.id}/prognose|}" th:if="${magWijzigen}">
             <div style="display:flex; gap:1rem;">
                 <div class="form-group">
@@ -34,7 +34,7 @@
                     <input type="number" min="0" name="doelpuntenB" th:value="${eigenPrognose != null ? eigenPrognose.voorspeldeDoelpuntenB : 0}">
                 </div>
             </div>
-            <button type="submit" class="btn" th:text="#{button.save.prognose}">Prognose Opslaan</button>
+            <button type="submit" class="btn">[[#{button.save.prognose}]]</button>
         </form>
         <div th:unless="${magWijzigen}" class="alert alert-danger" th:text="#{error.prognose.te.laat}"></div>
     </div>

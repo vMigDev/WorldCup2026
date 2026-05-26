@@ -6,15 +6,15 @@
 
 <div class="container">
     <div class="card">
-        <h1 th:text="#{nav.top10}">Top-10 Teams</h1>
-        <p th:text="#{top10.intro}">Ontdek welke teams de allerbeste World Cup prognoses hebben ingevuld!</p>
+        <h1 th:text="#{nav.top10}"></h1>
+        <p th:text="#{top10.intro}"></p>
 
         <table>
             <tr>
-                <th th:text="#{label.rang}">Rang</th>
-                <th th:text="#{label.team}">Team</th>
-                <th th:text="#{label.totaalscore}">Totale Score</th>
-                <th th:text="#{label.aantalleden}">Aantal Leden</th>
+                <th>[[#{label.rang}]]</th>
+                <th>[[#{label.team}]]</th>
+                <th>[[#{label.totaalscore}]]</th>
+                <th>[[#{label.aantalleden}]]</th>
             </tr>
             <tr th:each="entry, iter : ${teams}">
                 <td>

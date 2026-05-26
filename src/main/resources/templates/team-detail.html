@@ -12,39 +12,39 @@
         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
             <div>
                 <h1 th:text="${team.teamNaam}"></h1>
-                <p><strong th:text="#{label.invitecode}"></strong>:
+                <p><strong>[[#{label.invitecode}]]</strong>:
                     <span th:text="${team.uitnodigingscode}" style="background: #f1f4f9; padding: 0.3rem 0.6rem; border-radius: 4px; font-family: monospace; font-size: 1.1rem; letter-spacing: 2px;"></span>
                 </p>
-                <p><strong th:text="#{label.totaalscore}"></strong>: <span th:text="${totaleScore}"></span> <span th:text="#{label.punten}"></span></p>
+                <p><strong>[[#{label.totaalscore}]]</strong>: <span th:text="${totaleScore}"></span> [[#{label.punten}]]</p>
             </div>
 
             <form th:if="${isEigenaar}" method="post" th:action="@{|/team/${team.id}/regenerate|}">
-                <button type="submit" class="btn btn-secondary" th:text="#{button.regenerate.code}">Genereer nieuwe invitecode</button>
+                <button type="submit" class="btn btn-secondary">[[#{button.regenerate.code}]]</button>
             </form>
         </div>
     </div>
 
     <div class="card">
-        <h2 th:text="#{label.leden}">Leden</h2>
+        <h2>[[#{label.leden}]]</h2>
         <table>
             <tr>
-                <th th:text="#{label.gebruikersnaam}">Gebruikersnaam</th>
-                <th th:text="#{label.persoonlijkescore}">Persoonlijke score</th>
-                <th th:text="#{label.status}">Status</th>
-                <th th:if="${isEigenaar}" th:text="#{label.actions}">Acties</th>
+                <th>[[#{label.gebruikersnaam}]]</th>
+                <th>[[#{label.persoonlijkescore}]]</th>
+                <th>[[#{label.status}]]</th>
+                <th th:if="${isEigenaar}">[[#{label.actions}]]</th>
             </tr>
             <tr th:each="lid : ${lidScores}">
                 <td th:text="${lid.gebruikersnaam}" style="font-weight: 500;"></td>
                 <td th:text="${lid.score}"></td>
                 <td>
-                    <span th:if="${lid.eigenaar}" th:text="#{label.eigenaar}" style="color: #0b57d0; font-weight: bold;"></span>
-                    <span th:unless="${lid.eigenaar}" th:text="#{label.geen}" style="color: #6c757d;"></span>
+                    <span th:if="${lid.eigenaar}" style="color: #0b57d0; font-weight: bold;">[[#{label.eigenaar}]]</span>
+                    <span th:unless="${lid.eigenaar}" style="color: #6c757d;">[[#{label.geen}]]</span>
                 </td>
                 <td th:if="${isEigenaar}">
                     <form method="post" th:if="${!lid.eigenaar}" th:action="@{|/team/${team.id}/leden/${lid.gebruikerId}/verwijder|}" style="margin: 0;">
-                        <button type="submit" class="btn btn-danger" style="padding: 0.3rem 0.6rem; font-size: 0.9rem;" th:text="#{button.remove}">Lid verwijderen</button>
+                        <button type="submit" class="btn btn-danger" style="padding: 0.3rem 0.6rem; font-size: 0.9rem;">[[#{button.remove}]]</button>
                     </form>
-                    <span th:if="${lid.eigenaar}" th:text="#{label.geen}">-</span>
+                    <span th:if="${lid.eigenaar}">[[#{label.geen}]]</span>
                 </td>
             </tr>
         </table>

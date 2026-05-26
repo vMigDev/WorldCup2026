@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="nl" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments :: head(#{screen.home.title})}"></head>
+<head th:replace="~{fragments :: head(#{app.title})}"></head>
 <body>
 <nav th:replace="~{fragments :: navbar}"></nav>
 
@@ -9,20 +9,24 @@
     <div th:if="${foutmelding}" class="alert alert-danger" th:text="#{${foutmelding}}"></div>
 
     <div class="card">
-        <h1 th:text="#{home.heading}">FIFA World Cup 2026</h1>
+        <h1 th:text="#{home.heading}"></h1>
         <p th:text="#{home.intro}"></p>
-        <p th:text="#{screen.home.block}"></p>
     </div>
 
     <div class="card">
-        <h2 th:text="#{home.matches.title}">Geplande Wedstrijden</h2>
+        <h2 th:text="#{home.matches.title}"></h2>
         <table>
-            <tr><th th:text="#{label.match}">Match</th><th th:text="#{label.datum}">Datum</th><th th:text="#{label.locatie}">Locatie</th><th th:text="#{label.details}">Details</th></tr>
+            <tr>
+                <th>[[#{label.match}]]</th>
+                <th>[[#{label.datum}]]</th>
+                <th>[[#{label.locatie}]]</th>
+                <th>[[#{label.match}]]</th>
+            </tr>
             <tr th:each="wedstrijd : ${wedstrijden}">
                 <td th:text="${wedstrijd.landA + ' vs ' + wedstrijd.landB}"></td>
                 <td th:text="${#temporals.format(wedstrijd.datumTijd, #messages.msg('label.format.datetime'))}"></td>
                 <td th:text="${wedstrijd.locatie}"></td>
-                <td><a th:href="@{|/wedstrijd/${wedstrijd.id}|}" class="btn btn-secondary" style="padding: 0.3rem 0.6rem;" th:text="#{button.view}">Bekijk</a></td>
+                <td><a th:href="@{|/wedstrijd/${wedstrijd.id}|}" class="btn btn-secondary" style="padding: 0.3rem 0.6rem;">[[#{button.view}]]</a></td>
             </tr>
         </table>
     </div>

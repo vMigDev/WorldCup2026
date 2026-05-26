@@ -10,26 +10,26 @@
     <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
 
         <div class="card" style="flex: 1; min-width: 300px;">
-            <h1 th:text="#{team.new.title}">Nieuw team</h1>
-            <p th:text="#{team.new.intro}">Maak een nieuw team aan en word de captain. Je kunt hierna je invitecode delen met je vrienden.</p>
+            <h1 th:text="#{team.new.title}"></h1>
+            <p th:text="#{team.new.intro}"></p>
             <form method="post" th:action="@{/team/nieuw}">
                 <div class="form-group">
-                    <label th:text="#{label.teamnaam}">Teamnaam</label>
+                    <label>[[#{label.teamnaam}]]</label>
                     <input type="text" name="teamNaam" required>
                 </div>
-                <button type="submit" class="btn" th:text="#{button.create.team}">Team aanmaken</button>
+                <button type="submit" class="btn">[[#{button.create.team}]]</button>
             </form>
         </div>
 
         <div class="card" style="flex: 1; min-width: 300px;">
-            <h2 th:text="#{team.join.title}">Join bestaand team</h2>
-            <p th:text="#{team.join.intro}">Heb je een invitecode gekregen van een vriend? Vul deze hier in om je direct bij het team aan te sluiten.</p>
+            <h2 th:text="#{team.join.title}"></h2>
+            <p th:text="#{team.join.intro}"></p>
             <form method="post" th:action="@{/team/join}">
                 <div class="form-group">
-                    <label th:text="#{label.invitecode}">Invitecode</label>
+                    <label>[[#{label.invitecode}]]</label>
                     <input type="text" name="uitnodigingscode" required>
                 </div>
-                <button type="submit" class="btn btn-secondary" th:text="#{button.join.team}">Join team</button>
+                <button type="submit" class="btn btn-secondary">[[#{button.join.team}]]</button>
             </form>
         </div>
 

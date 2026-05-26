@@ -15,45 +15,45 @@
                 <p th:each="err : ${#fields.globalErrors()}" th:text="${err}" style="margin:0;"></p>
             </div>
             <div class="form-group">
-                <label th:text="#{label.landa}">Land A</label>
+                <label>[[#{label.landa}]]</label>
                 <input type="text" th:field="*{landA}">
                 <span class="error-text" th:if="${#fields.hasErrors('landA')}" th:errors="*{landA}"></span>
             </div>
 
             <div class="form-group">
-                <label th:text="#{label.landb}">Land B</label>
+                <label>[[#{label.landb}]]</label>
                 <input type="text" th:field="*{landB}">
                 <span class="error-text" th:if="${#fields.hasErrors('landB')}" th:errors="*{landB}"></span>
             </div>
 
             <div class="form-group">
-                <label th:text="#{label.datumtijd}">Datum & tijd</label>
+                <label>[[#{label.datumtijd}]]</label>
                 <input type="datetime-local" th:field="*{datumTijd}">
                 <span class="error-text" th:if="${#fields.hasErrors('datumTijd')}" th:errors="*{datumTijd}"></span>
             </div>
 
             <div class="form-group">
-                <label th:text="#{label.locatie}">Locatie</label>
+                <label>[[#{label.locatie}]]</label>
                 <input type="text" th:field="*{locatie}">
                 <span class="error-text" th:if="${#fields.hasErrors('locatie')}" th:errors="*{locatie}"></span>
             </div>
 
             <div style="display:flex; gap:1rem;">
                 <div class="form-group" style="flex:1;">
-                    <label th:text="#{label.stadioncode}">Stadiumcode</label>
+                    <label>[[#{label.stadioncode}]]</label>
                     <input type="number" th:field="*{stadiumcode}">
                     <span class="error-text" th:if="${#fields.hasErrors('stadiumcode')}" th:errors="*{stadiumcode}"></span>
                 </div>
                 <div class="form-group" style="flex:1;">
-                    <label th:text="#{label.checksum}">Checksum</label>
+                    <label>[[#{label.checksum}]]</label>
                     <input type="number" th:field="*{checksum}">
                     <span class="error-text" th:if="${#fields.hasErrors('checksum')}" th:errors="*{checksum}"></span>
                 </div>
             </div>
 
             <div class="action-buttons">
-                <button type="submit" class="btn" th:text="#{button.save}">Opslaan</button>
-                <a th:href="@{/admin/wedstrijden}" class="btn btn-secondary" th:text="#{button.cancel}">Annuleren</a>
+                <button type="submit" class="btn">[[#{button.save}]]</button>
+                <a th:href="@{/admin/wedstrijden}" class="btn btn-secondary">[[#{button.cancel}]]</a>
             </div>
         </form>
     </div>

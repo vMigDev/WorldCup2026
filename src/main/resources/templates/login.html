@@ -6,28 +6,28 @@
 
 <div class="container">
     <div class="card" style="max-width: 400px; margin: 2rem auto;">
-        <h1 th:text="#{nav.login}">Inloggen</h1>
+        <h1 th:text="#{nav.login}"></h1>
 
-        <p th:if="${param.error}" class="alert alert-danger" th:text="#{error.login.invalid}">Ongeldige gebruikersnaam of wachtwoord.</p>
-        <p th:if="${param.logout}" class="alert alert-success" th:text="#{msg.logout.succes}">Je bent succesvol uitgelogd.</p>
+        <p th:if="${param.error}" class="alert alert-danger" th:text="#{error.login.invalid}"></p>
+        <p th:if="${param.logout}" class="alert alert-success" th:text="#{msg.logout.succes}"></p>
         <p th:if="${succes}" class="alert alert-success" th:text="#{${succes}}"></p>
 
         <form method="post" th:action="@{/login}">
             <div class="form-group">
-                <label th:text="#{label.gebruikersnaam}">Gebruikersnaam</label>
+                <label>[[#{label.gebruikersnaam}]]</label>
                 <input type="text" name="username" required>
             </div>
             <div class="form-group">
-                <label th:text="#{label.wachtwoord}">Wachtwoord</label>
+                <label>[[#{label.wachtwoord}]]</label>
                 <input type="password" name="password" required>
             </div>
             <div class="action-buttons">
-                <button type="submit" class="btn" style="width: 100%;" th:text="#{nav.login}">Inloggen</button>
+                <button type="submit" class="btn" style="width: 100%;">[[#{nav.login}]]</button>
             </div>
         </form>
 
         <div style="margin-top: 1.5rem; text-align: center; border-top: 1px solid #eee; padding-top: 1rem;">
-            <span th:text="#{login.no.account}">Nog geen account?</span> <a th:href="@{/registreer}" th:text="#{nav.register}">Registreren</a>
+            <span>[[#{login.no.account}]]</span> <a th:href="@{/registreer}">[[#{nav.register}]]</a>
         </div>
     </div>
 </div>
